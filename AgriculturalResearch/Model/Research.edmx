@@ -1,0 +1,549 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AgriculturalResearchModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“AgriculturalResearch.dbo.Achievements”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Achievements">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonId" Type="int" />
+          <Property Name="AchTitle" Type="varchar" MaxLength="50" />
+          <Property Name="AchType" Type="varchar" MaxLength="20" />
+          <Property Name="AchContent" Type="varchar" MaxLength="500" />
+          <Property Name="AchTime" Type="datetime" />
+          <Property Name="AchFile" Type="varchar" MaxLength="50" />
+          <Property Name="AchTel" Type="varchar" MaxLength="50" />
+          <Property Name="Honor" Type="varchar" MaxLength="50" />
+          <Property Name="OperTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Account" Type="varchar" MaxLength="50" />
+          <Property Name="Pwd" Type="varchar" MaxLength="20" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+          <Property Name="Tel" Type="varchar" MaxLength="20" />
+          <Property Name="Role" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="ExpRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="ExpContent" Type="nchar" MaxLength="10" />
+          <Property Name="ExpPerson" Type="nchar" MaxLength="10" />
+          <Property Name="ExpTime" Type="nchar" MaxLength="10" />
+          <Property Name="UpFile" Type="nchar" MaxLength="10" />
+          <Property Name="State" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ItemPersonnel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonId" Type="int" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="OperTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Account" Type="varchar" MaxLength="20" />
+          <Property Name="Pwd" Type="varchar" MaxLength="20" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+          <Property Name="Sex" Type="varchar" MaxLength="20" />
+          <Property Name="Age" Type="varchar" MaxLength="20" />
+          <Property Name="Tel" Type="varchar" MaxLength="20" />
+          <Property Name="Title" Type="varchar" MaxLength="20" />
+          <Property Name="major" Type="varchar" MaxLength="20" />
+          <Property Name="College" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="ResearchItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonId" Type="int" />
+          <Property Name="ItemName" Type="varchar" MaxLength="20" />
+          <Property Name="ItemType" Type="varchar" MaxLength="20" />
+          <Property Name="ItemCompany" Type="varchar" MaxLength="20" />
+          <Property Name="MajorPerson" Type="varchar" MaxLength="20" />
+          <Property Name="ItemPerson" Type="varchar" MaxLength="20" />
+          <Property Name="Tel" Type="varchar" MaxLength="20" />
+          <Property Name="Funds" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ExeYear" Type="int" />
+          <Property Name="UpFile" Type="varchar" MaxLength="50" />
+          <Property Name="OperTime" Type="datetime" />
+          <Property Name="Approval" Type="varchar" MaxLength="300" />
+          <Property Name="ApprovalTime" Type="datetime" />
+          <Property Name="State" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ResearchPaper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonId" Type="int" />
+          <Property Name="PaperTitle" Type="varchar" MaxLength="50" />
+          <Property Name="KName" Type="varchar" MaxLength="50" />
+          <Property Name="KType" Type="varchar" MaxLength="50" />
+          <Property Name="DanWei" Type="varchar" MaxLength="50" />
+          <Property Name="OperTime" Type="datetime" />
+          <Property Name="UpFile" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Exprecord_ResearchItem">
+          <End Role="ResearchItem" Type="Self.ResearchItem" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExpRecord" Type="Self.ExpRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResearchItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpRecord">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemPersonnel_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="ItemPersonnel" Type="Self.ItemPersonnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemPersonnel">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemPersonnel_ResearchItem">
+          <End Role="ResearchItem" Type="Self.ResearchItem" Multiplicity="0..1" />
+          <End Role="ItemPersonnel" Type="Self.ItemPersonnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResearchItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemPersonnel">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResearchItem_ResearchlPerson">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ResearchItem" Type="Self.ResearchItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResearchItem">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResearchPaper_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ResearchPaper" Type="Self.ResearchPaper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResearchPaper">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AgriculturalResearchModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpRecord" EntityType="Self.ExpRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemPersonnel" EntityType="Self.ItemPersonnel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResearchItem" EntityType="Self.ResearchItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResearchPaper" EntityType="Self.ResearchPaper" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Achievements" EntityType="Self.Achievements" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Achievements].[Id] AS [Id], 
+[Achievements].[PersonId] AS [PersonId], 
+[Achievements].[AchTitle] AS [AchTitle], 
+[Achievements].[AchType] AS [AchType], 
+[Achievements].[AchContent] AS [AchContent], 
+[Achievements].[AchTime] AS [AchTime], 
+[Achievements].[AchFile] AS [AchFile], 
+[Achievements].[AchTel] AS [AchTel], 
+[Achievements].[Honor] AS [Honor], 
+[Achievements].[OperTime] AS [OperTime]
+FROM [dbo].[Achievements] AS [Achievements]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Exprecord_ResearchItem" Association="Self.FK_Exprecord_ResearchItem">
+            <End Role="ResearchItem" EntitySet="ResearchItem" />
+            <End Role="ExpRecord" EntitySet="ExpRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemPersonnel_Person" Association="Self.FK_ItemPersonnel_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="ItemPersonnel" EntitySet="ItemPersonnel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemPersonnel_ResearchItem" Association="Self.FK_ItemPersonnel_ResearchItem">
+            <End Role="ResearchItem" EntitySet="ResearchItem" />
+            <End Role="ItemPersonnel" EntitySet="ItemPersonnel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResearchItem_ResearchlPerson" Association="Self.FK_ResearchItem_ResearchlPerson">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="ResearchItem" EntitySet="ResearchItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResearchPaper_Person" Association="Self.FK_ResearchPaper_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="ResearchPaper" EntitySet="ResearchPaper" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AgriculturalResearchModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Account" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pwd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ExpRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="ExpContent" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ExpPerson" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ExpTime" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="UpFile" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ResearchItem" Relationship="Self.FK_Exprecord_ResearchItem" FromRole="ExpRecord" ToRole="ResearchItem" />
+        </EntityType>
+        <EntityType Name="ItemPersonnel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonId" Type="Int32" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="OperTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_ItemPersonnel_Person" FromRole="ItemPersonnel" ToRole="Person" />
+          <NavigationProperty Name="ResearchItem" Relationship="Self.FK_ItemPersonnel_ResearchItem" FromRole="ItemPersonnel" ToRole="ResearchItem" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Account" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Pwd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="major" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="College" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ItemPersonnel" Relationship="Self.FK_ItemPersonnel_Person" FromRole="Person" ToRole="ItemPersonnel" />
+          <NavigationProperty Name="ResearchItem" Relationship="Self.FK_ResearchItem_ResearchlPerson" FromRole="Person" ToRole="ResearchItem" />
+          <NavigationProperty Name="ResearchPaper" Relationship="Self.FK_ResearchPaper_Person" FromRole="Person" ToRole="ResearchPaper" />
+        </EntityType>
+        <EntityType Name="ResearchItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonId" Type="Int32" />
+          <Property Name="ItemName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ItemType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ItemCompany" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MajorPerson" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ItemPerson" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Funds" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ExeYear" Type="Int32" />
+          <Property Name="UpFile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OperTime" Type="DateTime" Precision="3" />
+          <Property Name="Approval" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="ApprovalTime" Type="DateTime" Precision="3" />
+          <Property Name="State" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ExpRecord" Relationship="Self.FK_Exprecord_ResearchItem" FromRole="ResearchItem" ToRole="ExpRecord" />
+          <NavigationProperty Name="ItemPersonnel" Relationship="Self.FK_ItemPersonnel_ResearchItem" FromRole="ResearchItem" ToRole="ItemPersonnel" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_ResearchItem_ResearchlPerson" FromRole="ResearchItem" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="ResearchPaper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonId" Type="Int32" />
+          <Property Name="PaperTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DanWei" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OperTime" Type="DateTime" Precision="3" />
+          <Property Name="UpFile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_ResearchPaper_Person" FromRole="ResearchPaper" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Achievements">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonId" Type="Int32" />
+          <Property Name="AchTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AchType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AchContent" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="AchTime" Type="DateTime" Precision="3" />
+          <Property Name="AchFile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AchTel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Honor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OperTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_Exprecord_ResearchItem">
+          <End Role="ResearchItem" Type="Self.ResearchItem" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExpRecord" Type="Self.ExpRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResearchItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpRecord">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemPersonnel_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="ItemPersonnel" Type="Self.ItemPersonnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemPersonnel">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemPersonnel_ResearchItem">
+          <End Role="ResearchItem" Type="Self.ResearchItem" Multiplicity="0..1" />
+          <End Role="ItemPersonnel" Type="Self.ItemPersonnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResearchItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ItemPersonnel">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResearchItem_ResearchlPerson">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ResearchItem" Type="Self.ResearchItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResearchItem">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResearchPaper_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ResearchPaper" Type="Self.ResearchPaper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ResearchPaper">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AgriculturalResearchEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="ExpRecord" EntityType="Self.ExpRecord" />
+          <EntitySet Name="ItemPersonnel" EntityType="Self.ItemPersonnel" />
+          <EntitySet Name="Person" EntityType="Self.Person" />
+          <EntitySet Name="ResearchItem" EntityType="Self.ResearchItem" />
+          <EntitySet Name="ResearchPaper" EntityType="Self.ResearchPaper" />
+          <EntitySet Name="Achievements" EntityType="Self.Achievements" />
+          <AssociationSet Name="FK_Exprecord_ResearchItem" Association="Self.FK_Exprecord_ResearchItem">
+            <End Role="ResearchItem" EntitySet="ResearchItem" />
+            <End Role="ExpRecord" EntitySet="ExpRecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemPersonnel_Person" Association="Self.FK_ItemPersonnel_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="ItemPersonnel" EntitySet="ItemPersonnel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemPersonnel_ResearchItem" Association="Self.FK_ItemPersonnel_ResearchItem">
+            <End Role="ResearchItem" EntitySet="ResearchItem" />
+            <End Role="ItemPersonnel" EntitySet="ItemPersonnel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResearchItem_ResearchlPerson" Association="Self.FK_ResearchItem_ResearchlPerson">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="ResearchItem" EntitySet="ResearchItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResearchPaper_Person" Association="Self.FK_ResearchPaper_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="ResearchPaper" EntitySet="ResearchPaper" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AgriculturalResearchModelStoreContainer" CdmEntityContainer="AgriculturalResearchEntities">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="AgriculturalResearchModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpRecord">
+            <EntityTypeMapping TypeName="AgriculturalResearchModel.ExpRecord">
+              <MappingFragment StoreEntitySet="ExpRecord">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ExpContent" ColumnName="ExpContent" />
+                <ScalarProperty Name="ExpPerson" ColumnName="ExpPerson" />
+                <ScalarProperty Name="ExpTime" ColumnName="ExpTime" />
+                <ScalarProperty Name="UpFile" ColumnName="UpFile" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemPersonnel">
+            <EntityTypeMapping TypeName="AgriculturalResearchModel.ItemPersonnel">
+              <MappingFragment StoreEntitySet="ItemPersonnel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person">
+            <EntityTypeMapping TypeName="AgriculturalResearchModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="major" ColumnName="major" />
+                <ScalarProperty Name="College" ColumnName="College" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResearchItem">
+            <EntityTypeMapping TypeName="AgriculturalResearchModel.ResearchItem">
+              <MappingFragment StoreEntitySet="ResearchItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+                <ScalarProperty Name="ItemCompany" ColumnName="ItemCompany" />
+                <ScalarProperty Name="MajorPerson" ColumnName="MajorPerson" />
+                <ScalarProperty Name="ItemPerson" ColumnName="ItemPerson" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Funds" ColumnName="Funds" />
+                <ScalarProperty Name="ExeYear" ColumnName="ExeYear" />
+                <ScalarProperty Name="UpFile" ColumnName="UpFile" />
+                <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+                <ScalarProperty Name="Approval" ColumnName="Approval" />
+                <ScalarProperty Name="ApprovalTime" ColumnName="ApprovalTime" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResearchPaper">
+            <EntityTypeMapping TypeName="AgriculturalResearchModel.ResearchPaper">
+              <MappingFragment StoreEntitySet="ResearchPaper">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="PaperTitle" ColumnName="PaperTitle" />
+                <ScalarProperty Name="KName" ColumnName="KName" />
+                <ScalarProperty Name="KType" ColumnName="KType" />
+                <ScalarProperty Name="DanWei" ColumnName="DanWei" />
+                <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+                <ScalarProperty Name="UpFile" ColumnName="UpFile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Achievements">
+            <EntityTypeMapping TypeName="AgriculturalResearchModel.Achievements">
+              <MappingFragment StoreEntitySet="Achievements">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="AchTitle" ColumnName="AchTitle" />
+                <ScalarProperty Name="AchType" ColumnName="AchType" />
+                <ScalarProperty Name="AchContent" ColumnName="AchContent" />
+                <ScalarProperty Name="AchTime" ColumnName="AchTime" />
+                <ScalarProperty Name="AchFile" ColumnName="AchFile" />
+                <ScalarProperty Name="AchTel" ColumnName="AchTel" />
+                <ScalarProperty Name="Honor" ColumnName="Honor" />
+                <ScalarProperty Name="OperTime" ColumnName="OperTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

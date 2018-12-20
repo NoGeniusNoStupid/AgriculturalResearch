@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="36f7cdb5b8e542c589c80f954659640a" Name="Diagram1">
+        <EntityTypeShape EntityType="AgriculturalResearchModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgriculturalResearchModel.ExpRecord" Width="1.5" PointX="9.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgriculturalResearchModel.ItemPersonnel" Width="1.5" PointX="5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgriculturalResearchModel.Person" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgriculturalResearchModel.ResearchItem" Width="1.5" PointX="5.625" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgriculturalResearchModel.ResearchPaper" Width="1.5" PointX="3.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgriculturalResearchModel.Achievements" Width="1.5" PointX="10.875" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="AgriculturalResearchModel.FK_Exprecord_ResearchItem" ManuallyRouted="false" />
+        <AssociationConnector Association="AgriculturalResearchModel.FK_ItemPersonnel_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="AgriculturalResearchModel.FK_ItemPersonnel_ResearchItem" ManuallyRouted="false" />
+        <AssociationConnector Association="AgriculturalResearchModel.FK_ResearchItem_ResearchlPerson" ManuallyRouted="false" />
+        <AssociationConnector Association="AgriculturalResearchModel.FK_ResearchPaper_Person" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
