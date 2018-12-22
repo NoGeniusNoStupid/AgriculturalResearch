@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 
 <title>登录</title>
-<link href="css/login.css" type="text/css" rel="stylesheet"> 
+<link href="/Theme/css/login.css" type="text/css" rel="stylesheet"> 
 </head> 
 <body> 
 <div class="div_top">OA日常办公管理系统</div>
@@ -30,7 +30,7 @@
 </div>
 
 <div class="copyright">版权所有@<span style="color:#f77118">2017 </span>杭州天夏科技股份集团有限公司</div>
-<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="/Theme/js/jquery.js"></script>
 <script >
     $(function () {
         $("#login_btn").click(function () {
@@ -70,7 +70,6 @@
             });
         }
     });
-
 </script>
 </body>
 </html>
