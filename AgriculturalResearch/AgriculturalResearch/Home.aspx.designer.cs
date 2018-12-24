@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace AgriculturalResearch.Admin {
+namespace AgriculturalResearch {
     
     
     public partial class Home {

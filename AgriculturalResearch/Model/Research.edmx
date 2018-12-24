@@ -4,9 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AgriculturalResearchModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“AgriculturalResearch.dbo.Achievements”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+    <Schema Namespace="AgriculturalResearchModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="Achievements">
           <Key>
             <PropertyRef Name="Id" />
@@ -32,6 +30,7 @@
           <Property Name="Name" Type="varchar" MaxLength="20" />
           <Property Name="Tel" Type="varchar" MaxLength="20" />
           <Property Name="Role" Type="varchar" MaxLength="20" />
+          <Property Name="AddTime" Type="datetime" />
         </EntityType>
         <EntityType Name="ExpRecord">
           <Key>
@@ -68,6 +67,7 @@
           <Property Name="Title" Type="varchar" MaxLength="20" />
           <Property Name="major" Type="varchar" MaxLength="20" />
           <Property Name="College" Type="varchar" MaxLength="20" />
+          <Property Name="RegTime" Type="datetime" />
         </EntityType>
         <EntityType Name="ResearchItem">
           <Key>
@@ -169,26 +169,13 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="AgriculturalResearchModelStoreContainer">
+          <EntitySet Name="Achievements" EntityType="Self.Achievements" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExpRecord" EntityType="Self.ExpRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemPersonnel" EntityType="Self.ItemPersonnel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResearchItem" EntityType="Self.ResearchItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResearchPaper" EntityType="Self.ResearchPaper" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Achievements" EntityType="Self.Achievements" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[Achievements].[Id] AS [Id], 
-[Achievements].[PersonId] AS [PersonId], 
-[Achievements].[AchTitle] AS [AchTitle], 
-[Achievements].[AchType] AS [AchType], 
-[Achievements].[AchContent] AS [AchContent], 
-[Achievements].[AchTime] AS [AchTime], 
-[Achievements].[AchFile] AS [AchFile], 
-[Achievements].[AchTel] AS [AchTel], 
-[Achievements].[Honor] AS [Honor], 
-[Achievements].[OperTime] AS [OperTime]
-FROM [dbo].[Achievements] AS [Achievements]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Exprecord_ResearchItem" Association="Self.FK_Exprecord_ResearchItem">
             <End Role="ResearchItem" EntitySet="ResearchItem" />
             <End Role="ExpRecord" EntitySet="ExpRecord" />
@@ -210,8 +197,7 @@ FROM [dbo].[Achievements] AS [Achievements]</DefiningQuery>
             <End Role="ResearchPaper" EntitySet="ResearchPaper" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AgriculturalResearchModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -225,6 +211,7 @@ FROM [dbo].[Achievements] AS [Achievements]</DefiningQuery>
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AddTime" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="ExpRecord">
           <Key>
@@ -267,6 +254,7 @@ FROM [dbo].[Achievements] AS [Achievements]</DefiningQuery>
           <NavigationProperty Name="ItemPersonnel" Relationship="Self.FK_ItemPersonnel_Person" FromRole="Person" ToRole="ItemPersonnel" />
           <NavigationProperty Name="ResearchItem" Relationship="Self.FK_ResearchItem_ResearchlPerson" FromRole="Person" ToRole="ResearchItem" />
           <NavigationProperty Name="ResearchPaper" Relationship="Self.FK_ResearchPaper_Person" FromRole="Person" ToRole="ResearchPaper" />
+          <Property Name="RegTime" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="ResearchItem">
           <Key>
@@ -424,6 +412,7 @@ FROM [dbo].[Achievements] AS [Achievements]</DefiningQuery>
           <EntitySetMapping Name="Admin">
             <EntityTypeMapping TypeName="AgriculturalResearchModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Account" ColumnName="Account" />
                 <ScalarProperty Name="Pwd" ColumnName="Pwd" />
@@ -459,6 +448,7 @@ FROM [dbo].[Achievements] AS [Achievements]</DefiningQuery>
           <EntitySetMapping Name="Person">
             <EntityTypeMapping TypeName="AgriculturalResearchModel.Person">
               <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="RegTime" ColumnName="RegTime" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Account" ColumnName="Account" />
                 <ScalarProperty Name="Pwd" ColumnName="Pwd" />

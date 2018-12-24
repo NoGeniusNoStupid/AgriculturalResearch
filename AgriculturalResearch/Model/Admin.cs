@@ -20,5 +20,6 @@ namespace Model
         public string Name { get; set; }
         public string Tel { get; set; }
         public string Role { get; set; }
+        public Nullable<System.DateTime> AddTime { get; set; }
     }
 }

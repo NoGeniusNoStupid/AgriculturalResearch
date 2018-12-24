@@ -31,6 +31,7 @@ namespace Model
         public string Title { get; set; }
         public string major { get; set; }
         public string College { get; set; }
+        public Nullable<System.DateTime> RegTime { get; set; }
     
         public virtual ICollection<ItemPersonnel> ItemPersonnel { get; set; }
         public virtual ICollection<ResearchItem> ResearchItem { get; set; }

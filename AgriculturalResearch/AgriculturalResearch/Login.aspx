@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
 
 <title>登录</title>
-<link href="/Theme/css/login.css" type="text/css" rel="stylesheet"> 
+<link href="/css/login.css" type="text/css" rel="stylesheet"> 
 </head> 
 <body> 
-<div class="div_top">OA日常办公管理系统</div>
+<div class="div_top">农业科研项目管理系统</div>
 <div class="login">
     <div class="message">用户登录</div>
     <div id="darkbannerwrap"></div>
@@ -21,6 +21,9 @@
 		<hr class="hr15">
         <asp:TextBox ID="pass" TextMode="Password" name="password" placeholder="密码"  runat="server"></asp:TextBox>
 		<hr class="hr15">
+        <asp:RadioButton ID="RadioButton1" GroupName="Power" Checked="true" Text="科研人员" runat="server" />
+        <asp:RadioButton ID="RadioButton2" GroupName="Power" Text="管理员" runat="server" />
+        <hr class="hr15">
         <asp:Button ID="login_btn"  runat="server" Text="登录" OnClick="login_btn_Click" />
 		<hr class="hr20">
 		  <a onClick="alert('请联系管理员')">忘记密码</a>
@@ -30,7 +33,7 @@
 </div>
 
 <div class="copyright">版权所有@<span style="color:#f77118">2017 </span>杭州天夏科技股份集团有限公司</div>
-<script type="text/javascript" src="/Theme/js/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery.js"></script>
 <script >
     $(function () {
         $("#login_btn").click(function () {

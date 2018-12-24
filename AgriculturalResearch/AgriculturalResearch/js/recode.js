@@ -138,7 +138,7 @@ function openlayer() {
         area: ['98%', '98%'],
         shadeClose: true,
         closeBtn: 2,
-        content:" recode_tail01.html"
+        content: "PersonAdd.aspx"
 
     });
     

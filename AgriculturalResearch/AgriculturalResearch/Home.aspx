@@ -1,13 +1,13 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="AgriculturalResearch.Admin.Home" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="AgriculturalResearch.Home" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="/Theme/css/base.css" />
-<link rel="stylesheet" href="/Theme/css/home.css" />
+<link rel="stylesheet" href="/css/base.css" />
+<link rel="stylesheet" href="/css/home.css" />
     <!--<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">-->
-    <link href="/Theme/css/bootstrap-table.css" rel="stylesheet" type="text/css">
+    <link href="/css/bootstrap-table.css" rel="stylesheet" type="text/css">
 <title>移动办公自动化系统</title>
 </head>
 
@@ -108,10 +108,10 @@
     </div>
 </div>
 </body>
-<script type="text/javascript" src="/Theme/js/jquery.js"></script>
-<script src="/Theme/js/bootstrap.min.js"></script>
-<script src="/Theme/js/bootstrap-table.js"></script>
-<script src="/Theme/js/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap-table.js"></script>
+<script src="/js/bootstrap-table-zh-CN.min.js"></script>
 <script>
     $(function () {
         $('#table').bootstrapTable({
@@ -163,7 +163,7 @@
         });
     })
 </script>
-<script type="text/javascript" src="/Theme/js/common.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
 <script type="text/javascript">
     $(".title-list ul").on("click", "li", function () {
         var aIndex = $(this).index();
