@@ -35,6 +35,7 @@ namespace Model
         public string Approval { get; set; }
         public Nullable<System.DateTime> ApprovalTime { get; set; }
         public string State { get; set; }
+        public string FileName { get; set; }
     
         public virtual ICollection<ExpRecord> ExpRecord { get; set; }
         public virtual ICollection<ItemPersonnel> ItemPersonnel { get; set; }

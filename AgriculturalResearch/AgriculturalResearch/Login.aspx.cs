@@ -34,6 +34,7 @@ namespace AgriculturalResearch
                     return;
                 }
                 Session["PersonId"] = person.Id;
+                Message("/PersonIndex.aspx", "登陆成功", -1);
             }
             else
             {
@@ -43,9 +44,9 @@ namespace AgriculturalResearch
                      Message("用户名或密码错误", true);
                      return;
                 }
-                Session["AdminId"] = admin.Id;          
-            }
-            Message("/Index.aspx", "登陆成功", -1);
+                Session["AdminId"] = admin.Id;
+                Message("/Index.aspx", "登陆成功", -1);
+            } 
         }
     }
 }

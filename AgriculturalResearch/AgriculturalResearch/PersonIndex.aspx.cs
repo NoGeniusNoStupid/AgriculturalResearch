@@ -7,8 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace AgriculturalResearch
 {
-    public partial class Index : PowerBase
+    public partial class PersonIndex : System.Web.UI.Page
     {
-        
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

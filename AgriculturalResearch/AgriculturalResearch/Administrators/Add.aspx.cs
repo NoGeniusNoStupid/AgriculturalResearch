@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace AgriculturalResearch.Administrators
 {
-    public partial class Add : PageBase
+    public partial class Add : PowerBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {

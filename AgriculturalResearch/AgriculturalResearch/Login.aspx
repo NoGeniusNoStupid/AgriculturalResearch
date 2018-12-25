@@ -32,7 +32,6 @@
 	
 </div>
 
-<div class="copyright">版权所有@<span style="color:#f77118">2017 </span>杭州天夏科技股份集团有限公司</div>
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script >
     $(function () {

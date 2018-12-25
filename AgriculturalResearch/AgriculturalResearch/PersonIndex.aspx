@@ -1,6 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="AgriculturalResearch.Default" %>
-
-<!DOCTYPE html>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PersonIndex.aspx.cs" Inherits="AgriculturalResearch.PersonIndex" %>
 
 <html>
 <head>
@@ -20,18 +18,15 @@
         	<div class="top-light"></div>
             <h1 class="logo"></h1>
             <div class="login-info ue-clear">
-                <div class="welcome ue-clear"><span>欢迎您,</span><a href="javascript:void(0)" class="user-name">管理员</a></div>
+                <div class="welcome ue-clear"><span>欢迎您,</span><a href="javascript:void(0)" class="user-name">科研人员</a></div>
                 <div class="login-msg ue-clear">
                     <a href="javascript:void(0)" class="msg-txt">消息</a>
                     <a href="javascript:void(0)" class="msg-num">10</a>
                 </div>
             </div>
             <div class="toolbar ue-clear">
-                <a href="/Home.aspx" class="home-btn" target="right">首页</a>
-
-                <a href="javascript:void(0)" class="home-btn1" target="right" onclick="openlayer()">修改密码</a>
-              
-
+                <a href="/PersonHome.aspx" class="home-btn" target="right">首页</a>
+                <a href="/Person/UpdatePwd" class="home-btn1" target="right" onclick="openlayer()">修改密码</a>
                 <a href="#" class="quit-btn exit home-btn">退出</a>
             </div>
         </div>
@@ -43,33 +38,45 @@
              
                   <ul class="nav">
                 	<li class="office current"><div class="nav-header">
-                        <a href="/Home.aspx" target="right" class="ue-clear">
+                        <a href="/PersonHome.aspx" target="right" class="ue-clear">
                         <span>首页</span><i class="icon"></i></a></div></li>
-                    <li class="dossier"><div class="nav-header"><a href="JavaScript:;" class="ue-clear" ><span>管理员管理</span><i class="icon hasChild"></i></a></div>
+                    <li class="dossier"><div class="nav-header"><a href="JavaScript:;" class="ue-clear" ><span>个人信息管理</span><i class="icon hasChild"></i></a></div>
                         <ul class="subnav">
-                           <li><a href="/Administrators/Add.aspx" target="right">添加管理员</a></li>
-                            <li><a href="/Administrators/Manage.aspx" target="right">管理员管理</a></li>
+                           <li><a href="/Person/PersonAdd.aspx?type=1&id=<%=Session["PersonId"] %>" target="right">完善个人信息</a></li>
+                           <li><a href="/Person/UpdatePwd" target="right">修改密码</a></li>
                         </ul>
                     </li>
 
-                    <li class="list_m"><div class="nav-header"><a href="JavaScript:;" target="right" class="ue-clear" ><span>科研人员管理</span><i class="icon hasChild"></i></a></div>
+                    <li class="list_m"><div class="nav-header"><a href="JavaScript:;" target="right" class="ue-clear" ><span>科研项目管理</span><i class="icon hasChild"></i></a></div>
                         <ul class="subnav">
-                            <li><a href="/Person/PersonAdd.aspx" target="right">添加科研人员</a></li>
-                            <li><a href="/Person/PersonManage.aspx" target="right">科研人员管理</a></li>
+                            <li><a href="/ResearchItemPage/Add.aspx" target="right">项目申报</a></li>
+                            <li><a href="/ResearchItemPage/Manage.aspx" target="right">申报管理</a></li>
+                            <li><a href="/ResearchItemPage/Manage.aspx?type=person" target="right">参与项目</a></li>
                         </ul>
                     </li>
-                    <li class="email"><div class="nav-header"><a href="mesage.html"class="ue-clear"  target="right"><span>消息推送</span><i class="icon"></i></a></div></li>
+                    <li class="email"><div class="nav-header"><a href="JavaScript:;" target="right" class="ue-clear" ><span>科研论文管理</span><i class="icon hasChild"></i></a></div>
+                        <ul class="subnav">
+                            <li><a href="/Person/PersonAdd.aspx" target="right">添加论文</a></li>
+                            <li><a href="/Person/PersonManage.aspx" target="right">我的论文</a></li>
+                        </ul>
+                    </li>
+                    <li class="news_m"><div class="nav-header"><a href="JavaScript:;" target="right" class="ue-clear" ><span>科研成果管理</span><i class="icon hasChild"></i></a></div>
+                        <ul class="subnav">
+                            <li><a href="/Person/PersonAdd.aspx" target="right">添加成果</a></li>
+                            <li><a href="/Person/PersonManage.aspx" target="right">我的成果</a></li>
+                        </ul>
+                    </li>
+                  <%--  <li class="email"><div class="nav-header"><a href="mesage.html"class="ue-clear"  target="right"><span>消息推送</span><i class="icon"></i></a></div></li>
                     <li class="train"><div class="nav-header"><a href="mailList.html" class="ue-clear" target="right"><span>通讯录管理</span><i class="icon"></i></a></div></li>
                     <li class="news_m"><div class="nav-header"><a href="notice.html" class="ue-clear"  target="right"><span>通知通告</span><i class="icon"></i></a></div></li>
                     <li class="land"><div class="nav-header"><a href="JavaScript:;" class="ue-clear" ><span>档案管理</span><i class="icon hasChild"></i></a></div>
                         <ul class="subnav">
                             <li><a href="dossier_my.html" target="right">个人档案</a></li>
                             <li><a href="dossier_puplic.html" target="right">公共档案</a></li>
-
                         </ul>
-                    </li>
+                    </li>--%>
 
-                    <li class="part"><div class="nav-header"><a href="JavaScript:;" class="ue-clear" ><span>系统管理</span><i class="icon hasChild"></i></a></div>
+                 <%--   <li class="part"><div class="nav-header"><a href="JavaScript:;" class="ue-clear" ><span>系统管理</span><i class="icon hasChild"></i></a></div>
                         <ul class="subnav">
                             <li><a href="person.html" target="right">用户管理</a></li>
                             <li><a href="part.html" target="right">部门管理</a></li>
@@ -77,11 +84,11 @@
                             <li><a href="role.html" target="right">角色管理</a></li>
 
                         </ul>
-                    </li>
+                    </li>--%>
                 </ul>
             </div>
             <div class="content">
-            	<iframe src="Home.aspx" id="iframe" width="100%" height="100%" frameborder="0" name="right" style="min-width: 1100px"></iframe>
+            	<iframe src="PersonHome.aspx" id="iframe" width="100%" height="100%" frameborder="0" name="right" style="min-width: 1100px"></iframe>
             </div>
         </div>
     </div>
@@ -114,7 +121,7 @@
 <script type="text/javascript" src="/js/jquery.dialog.js"></script>
 <script type="text/javascript" src="/js/index.js"></script>
 <script src="/js/layer_v2.1/layer/layer.js"></script>
-<script type="text/javascript">
+<%--<script type="text/javascript">
     function openlayer(id) {
         layer.open({
             type: 2,
@@ -129,5 +136,5 @@
             //iframe的url
         });
     }
-</script>
+</script>--%>
 </html>

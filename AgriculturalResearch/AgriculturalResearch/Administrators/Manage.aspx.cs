@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace AgriculturalResearch.Administrators
 {
-    public partial class Manage : PageBase
+    public partial class Manage : PowerBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {

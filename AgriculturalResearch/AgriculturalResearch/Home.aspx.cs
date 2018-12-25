@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace AgriculturalResearch
 {
-    public partial class Home : PageBase
+    public partial class Home : PowerBase
     {
        
     }

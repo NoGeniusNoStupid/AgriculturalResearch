@@ -16,6 +16,7 @@
           <Property Name="AchContent" Type="varchar" MaxLength="500" />
           <Property Name="AchTime" Type="datetime" />
           <Property Name="AchFile" Type="varchar" MaxLength="50" />
+          <Property Name="FileName" Type="varchar" MaxLength="50" />
           <Property Name="AchTel" Type="varchar" MaxLength="50" />
           <Property Name="Honor" Type="varchar" MaxLength="50" />
           <Property Name="OperTime" Type="datetime" />
@@ -84,6 +85,7 @@
           <Property Name="Funds" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ExeYear" Type="int" />
           <Property Name="UpFile" Type="varchar" MaxLength="50" />
+          <Property Name="FileName" Type="varchar" MaxLength="50" />
           <Property Name="OperTime" Type="datetime" />
           <Property Name="Approval" Type="varchar" MaxLength="300" />
           <Property Name="ApprovalTime" Type="datetime" />
@@ -101,6 +103,8 @@
           <Property Name="DanWei" Type="varchar" MaxLength="50" />
           <Property Name="OperTime" Type="datetime" />
           <Property Name="UpFile" Type="varchar" MaxLength="50" />
+          <Property Name="FileName" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="10" />
         </EntityType>
         <Association Name="FK_Exprecord_ResearchItem">
           <End Role="ResearchItem" Type="Self.ResearchItem" Multiplicity="0..1">
@@ -278,6 +282,7 @@
           <NavigationProperty Name="ExpRecord" Relationship="Self.FK_Exprecord_ResearchItem" FromRole="ResearchItem" ToRole="ExpRecord" />
           <NavigationProperty Name="ItemPersonnel" Relationship="Self.FK_ItemPersonnel_ResearchItem" FromRole="ResearchItem" ToRole="ItemPersonnel" />
           <NavigationProperty Name="Person" Relationship="Self.FK_ResearchItem_ResearchlPerson" FromRole="ResearchItem" ToRole="Person" />
+          <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ResearchPaper">
           <Key>
@@ -292,6 +297,8 @@
           <Property Name="OperTime" Type="DateTime" Precision="3" />
           <Property Name="UpFile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Person" Relationship="Self.FK_ResearchPaper_Person" FromRole="ResearchPaper" ToRole="Person" />
+          <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Achievements">
           <Key>
@@ -307,6 +314,7 @@
           <Property Name="AchTel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Honor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OperTime" Type="DateTime" Precision="3" />
+          <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Exprecord_ResearchItem">
           <End Role="ResearchItem" Type="Self.ResearchItem" Multiplicity="0..1">
@@ -465,6 +473,7 @@
           <EntitySetMapping Name="ResearchItem">
             <EntityTypeMapping TypeName="AgriculturalResearchModel.ResearchItem">
               <MappingFragment StoreEntitySet="ResearchItem">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PersonId" ColumnName="PersonId" />
                 <ScalarProperty Name="ItemName" ColumnName="ItemName" />
@@ -486,6 +495,8 @@
           <EntitySetMapping Name="ResearchPaper">
             <EntityTypeMapping TypeName="AgriculturalResearchModel.ResearchPaper">
               <MappingFragment StoreEntitySet="ResearchPaper">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PersonId" ColumnName="PersonId" />
                 <ScalarProperty Name="PaperTitle" ColumnName="PaperTitle" />
@@ -500,6 +511,7 @@
           <EntitySetMapping Name="Achievements">
             <EntityTypeMapping TypeName="AgriculturalResearchModel.Achievements">
               <MappingFragment StoreEntitySet="Achievements">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PersonId" ColumnName="PersonId" />
                 <ScalarProperty Name="AchTitle" ColumnName="AchTitle" />

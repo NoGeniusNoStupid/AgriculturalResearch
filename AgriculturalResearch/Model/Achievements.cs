@@ -24,5 +24,6 @@ namespace Model
         public string AchTel { get; set; }
         public string Honor { get; set; }
         public Nullable<System.DateTime> OperTime { get; set; }
+        public string FileName { get; set; }
     }
 }

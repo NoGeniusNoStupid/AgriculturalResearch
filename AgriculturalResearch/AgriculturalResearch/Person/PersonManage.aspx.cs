@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace AgriculturalResearch
 {
-    public partial class PersonManage : PageBase
+    public partial class PersonManage : PowerBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,7 +18,7 @@ namespace AgriculturalResearch
                 PageLoad();
             }
         }
-      
+        //删除
         protected void GvData_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int ID =Convert.ToInt32(GvData.DataKeys[e.RowIndex].Values[0].ToString());
@@ -26,8 +26,8 @@ namespace AgriculturalResearch
             DB.Entry(persont).State = EntityState.Deleted;
             DB.SaveChanges();
             PageLoad();
-
         }
+        //分页
         protected void GvData_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GvData.PageIndex = e.NewPageIndex;

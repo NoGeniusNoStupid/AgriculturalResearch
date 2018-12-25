@@ -71,7 +71,12 @@ namespace AgriculturalResearch
                 DB.SaveChanges();
             }
             //跳转
-            Message("/PersonManage.aspx", "保存成功");
+            //Message("/PersonManage.aspx", "保存成功");
+          
+            if(Session["AdminId"]==null)
+                Message("保存成功", true);
+            else
+                Message("/PersonManage.aspx", "保存成功");
         }
     }
 }
