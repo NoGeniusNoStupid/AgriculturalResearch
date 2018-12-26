@@ -42,8 +42,8 @@
                         <span>首页</span><i class="icon"></i></a></div></li>
                     <li class="dossier"><div class="nav-header"><a href="JavaScript:;" class="ue-clear" ><span>个人信息管理</span><i class="icon hasChild"></i></a></div>
                         <ul class="subnav">
-                           <li><a href="/Person/PersonAdd.aspx?type=1&id=<%=Session["PersonId"] %>" target="right">完善个人信息</a></li>
-                           <li><a href="/Person/UpdatePwd" target="right">修改密码</a></li>
+                           <li><a href="/PersonPage/PersonAdd.aspx?type=1&id=<%=Session["PersonId"] %>" target="right">完善个人信息</a></li>
+                           <li><a href="/PersonPage/UpdatePwd" target="right">修改密码</a></li>
                         </ul>
                     </li>
 

@@ -17,6 +17,8 @@
         <AssociationConnector Association="AgriculturalResearchModel.FK_ItemPersonnel_ResearchItem" ManuallyRouted="false" />
         <AssociationConnector Association="AgriculturalResearchModel.FK_ResearchItem_ResearchlPerson" ManuallyRouted="false" />
         <AssociationConnector Association="AgriculturalResearchModel.FK_ResearchPaper_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="AgriculturalResearchModel.FK_Achievements_Person" />
+        <AssociationConnector Association="AgriculturalResearchModel.FK_ExpRecord_Person" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

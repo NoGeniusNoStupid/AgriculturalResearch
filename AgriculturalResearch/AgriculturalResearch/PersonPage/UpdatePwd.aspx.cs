@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AgriculturalResearch.Person
+namespace AgriculturalResearch.PersonPage
 {
-    public partial class Detail : System.Web.UI.Page
+    public partial class UpdatePwd : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -125,7 +125,8 @@
             </div>
             <div class="bot_btn">
                 <asp:Button CssClass="btn btn-success" ID="Button1" runat="server" Text="保存" OnClick="Button1_Click" />
-                <button class="btn btn1"><a href="/Manage.aspx" target="right">返回</a></button>
+              <a href="javascript:self.location=document.referrer;" class="btn btn1">返回</a>
+               <%-- <button class="btn btn1"><a href="/Manage.aspx" target="right">返回</a></button>--%>
             </div>
         </div>
     </form>

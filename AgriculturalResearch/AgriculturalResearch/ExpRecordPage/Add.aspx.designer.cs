@@ -7,10 +7,10 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace AgriculturalResearch.ResearchItemPage {
+namespace AgriculturalResearch.ExpRecordPage {
     
     
-    public partial class Detail {
+    public partial class Add {
         
         /// <summary>
         /// form_demo 控件。
@@ -22,22 +22,31 @@ namespace AgriculturalResearch.ResearchItemPage {
         protected global::System.Web.UI.HtmlControls.HtmlForm form_demo;
         
         /// <summary>
-        /// Label1 控件。
+        /// ExpContent 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.TextBox ExpContent;
         
         /// <summary>
-        /// DropDownList1 控件。
+        /// RequiredFieldValidator1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        
+        /// <summary>
+        /// FileUpload3 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload3;
         
         /// <summary>
         /// Button1 控件。
@@ -47,14 +56,5 @@ namespace AgriculturalResearch.ResearchItemPage {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button1;
-        
-        /// <summary>
-        /// Button2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
     }
 }

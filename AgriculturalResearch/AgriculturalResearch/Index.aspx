@@ -52,13 +52,19 @@
                         </ul>
                     </li>
 
-                    <li class="list_m"><div class="nav-header"><a href="JavaScript:;" target="right" class="ue-clear" ><span>科研人员管理</span><i class="icon hasChild"></i></a></div>
+                    <li class="part"><div class="nav-header"><a href="JavaScript:;" target="right" class="ue-clear" ><span>科研人员管理</span><i class="icon hasChild"></i></a></div>
                         <ul class="subnav">
-                            <li><a href="/Person/PersonAdd.aspx" target="right">添加科研人员</a></li>
-                            <li><a href="/Person/PersonManage.aspx" target="right">科研人员管理</a></li>
+                            <li><a href="/PersonPage/PersonAdd.aspx" target="right">添加科研人员</a></li>
+                            <li><a href="/PersonPage/PersonManage.aspx" target="right">科研人员管理</a></li>
                         </ul>
                     </li>
-                    <li class="email"><div class="nav-header"><a href="mesage.html"class="ue-clear"  target="right"><span>消息推送</span><i class="icon"></i></a></div></li>
+                   <li class="list_m"><div class="nav-header"><a href="/ResearchItemPage/Manage.aspx" target="right" class="ue-clear" ><span>项目审批</span><i class="icon hasChild"></i></a></div>
+                        <%--<ul class="subnav">
+                            <li><a href="/ResearchItemPage/Manage.aspx" target="right">项目审批</a></li>
+                        </ul>--%>
+                   </li>
+                   
+                   <%-- <li class="email"><div class="nav-header"><a href="mesage.html"class="ue-clear"  target="right"><span>消息推送</span><i class="icon"></i></a></div></li>
                     <li class="train"><div class="nav-header"><a href="mailList.html" class="ue-clear" target="right"><span>通讯录管理</span><i class="icon"></i></a></div></li>
                     <li class="news_m"><div class="nav-header"><a href="notice.html" class="ue-clear"  target="right"><span>通知通告</span><i class="icon"></i></a></div></li>
                     <li class="land"><div class="nav-header"><a href="JavaScript:;" class="ue-clear" ><span>档案管理</span><i class="icon hasChild"></i></a></div>
@@ -77,7 +83,7 @@
                             <li><a href="role.html" target="right">角色管理</a></li>
 
                         </ul>
-                    </li>
+                    </li>--%>
                 </ul>
             </div>
             <div class="content">

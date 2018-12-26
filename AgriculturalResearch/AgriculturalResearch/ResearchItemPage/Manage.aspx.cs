@@ -17,6 +17,49 @@ namespace AgriculturalResearch.ResearchItemPage
                 PageLoad();
             }
         }
+
+        //事件在所有回发数据和视图状态数据都加载到页以及页上的所有控件中后发生。
+        protected void Page_LoadComplete(object sender, EventArgs e)
+        {
+            foreach (GridViewRow  row in GvData.Rows)
+            {
+                //获取四个按钮
+                LinkButton AgreeButton = row.Cells[9].FindControl("AgreeButton") as LinkButton;
+                LinkButton RefuseButton = row.Cells[9].FindControl("RefuseButton") as LinkButton;
+                LinkButton PostButton = row.Cells[9].FindControl("PostButton") as LinkButton;
+                LinkButton RevokeButton = row.Cells[9].FindControl("RevokeButton") as LinkButton;
+
+                HyperLink HyperLink3 = row.Cells[10].FindControl("HyperLink3") as HyperLink;//编辑功能
+                
+                //获取State的值
+             
+                Label stateLable = row.Cells[7].FindControl("State") as Label;
+                string state = stateLable.Text ;
+                if (Session["AdminId"] != null)
+                {
+                    HyperLink3.Visible = false;
+
+                    if (state == "同意")
+                       RefuseButton.Visible=true;
+                    else if (state == "拒绝")
+                       AgreeButton.Visible = true;
+                    else if (state == "待审核")
+                    {
+                        RefuseButton.Visible = true;
+                        AgreeButton.Visible = true;
+                    }
+                }
+                else
+                {
+                    HyperLink3.Visible = true;
+
+                    if (state == "待审核")
+                        RevokeButton.Visible = true;
+                    else if (state == "暂存")
+                        PostButton.Visible = true;
+                }
+            }
+        }
         //删除
         protected void GvData_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {

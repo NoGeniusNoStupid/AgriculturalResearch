@@ -17,9 +17,9 @@
     <form method="post" runat="server">
 		<input name="action" value="login" type="hidden">
 		
-        <asp:TextBox ID="user" name="username" placeholder="用户名"  runat="server"></asp:TextBox>
+        <asp:TextBox ID="user" name="username" Text="zhangwei" placeholder="用户名"  runat="server"></asp:TextBox>
 		<hr class="hr15">
-        <asp:TextBox ID="pass" TextMode="Password" name="password" placeholder="密码"  runat="server"></asp:TextBox>
+        <asp:TextBox ID="pass" TextMode="Password"  name="password" placeholder="密码"  runat="server"></asp:TextBox>
 		<hr class="hr15">
         <asp:RadioButton ID="RadioButton1" GroupName="Power" Checked="true" Text="科研人员" runat="server" />
         <asp:RadioButton ID="RadioButton2" GroupName="Power" Text="管理员" runat="server" />

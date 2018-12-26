@@ -19,6 +19,8 @@ namespace Model
             this.ItemPersonnel = new HashSet<ItemPersonnel>();
             this.ResearchItem = new HashSet<ResearchItem>();
             this.ResearchPaper = new HashSet<ResearchPaper>();
+            this.Achievements = new HashSet<Achievements>();
+            this.ExpRecord = new HashSet<ExpRecord>();
         }
     
         public int Id { get; set; }
@@ -32,9 +34,12 @@ namespace Model
         public string major { get; set; }
         public string College { get; set; }
         public Nullable<System.DateTime> RegTime { get; set; }
+        public string State { get; set; }
     
         public virtual ICollection<ItemPersonnel> ItemPersonnel { get; set; }
         public virtual ICollection<ResearchItem> ResearchItem { get; set; }
         public virtual ICollection<ResearchPaper> ResearchPaper { get; set; }
+        public virtual ICollection<Achievements> Achievements { get; set; }
+        public virtual ICollection<ExpRecord> ExpRecord { get; set; }
     }
 }

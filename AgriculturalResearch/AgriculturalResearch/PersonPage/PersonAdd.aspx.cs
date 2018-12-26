@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AgriculturalResearch
+namespace AgriculturalResearch.PersonPage
 {
     public partial class PersonAdd : PageBase
     {
@@ -76,7 +76,7 @@ namespace AgriculturalResearch
             if(Session["AdminId"]==null)
                 Message("保存成功", true);
             else
-                Message("/PersonManage.aspx", "保存成功");
+                Message("/PersonPage/PersonManage.aspx", "保存成功");
         }
     }
 }

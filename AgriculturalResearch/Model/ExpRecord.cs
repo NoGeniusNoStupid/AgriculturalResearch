@@ -17,11 +17,13 @@ namespace Model
         public int Id { get; set; }
         public Nullable<int> ItemId { get; set; }
         public string ExpContent { get; set; }
-        public string ExpPerson { get; set; }
-        public string ExpTime { get; set; }
+        public Nullable<System.DateTime> ExpTime { get; set; }
         public string UpFile { get; set; }
         public string State { get; set; }
+        public Nullable<int> PersonId { get; set; }
+        public string FileName { get; set; }
     
         public virtual ResearchItem ResearchItem { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

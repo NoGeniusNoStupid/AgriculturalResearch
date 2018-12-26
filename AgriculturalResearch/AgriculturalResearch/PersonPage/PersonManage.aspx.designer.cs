@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace AgriculturalResearch {
+namespace AgriculturalResearch.PersonPage {
     
     
     public partial class PersonManage {

@@ -39,10 +39,11 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ItemId" Type="int" />
-          <Property Name="ExpContent" Type="nchar" MaxLength="10" />
-          <Property Name="ExpPerson" Type="nchar" MaxLength="10" />
-          <Property Name="ExpTime" Type="nchar" MaxLength="10" />
-          <Property Name="UpFile" Type="nchar" MaxLength="10" />
+          <Property Name="PersonId" Type="int" />
+          <Property Name="ExpContent" Type="varchar" MaxLength="250" />
+          <Property Name="ExpTime" Type="datetime" />
+          <Property Name="UpFile" Type="varchar" MaxLength="50" />
+          <Property Name="FileName" Type="varchar" MaxLength="50" />
           <Property Name="State" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="ItemPersonnel">
@@ -69,6 +70,7 @@
           <Property Name="major" Type="varchar" MaxLength="20" />
           <Property Name="College" Type="varchar" MaxLength="20" />
           <Property Name="RegTime" Type="datetime" />
+          <Property Name="State" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="ResearchItem">
           <Key>
@@ -106,6 +108,32 @@
           <Property Name="FileName" Type="varchar" MaxLength="50" />
           <Property Name="State" Type="varchar" MaxLength="10" />
         </EntityType>
+        <Association Name="FK_Achievements_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Achievements" Type="Self.Achievements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Achievements">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExpRecord_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+          <End Role="ExpRecord" Type="Self.ExpRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpRecord">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Exprecord_ResearchItem">
           <End Role="ResearchItem" Type="Self.ResearchItem" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -133,7 +161,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ItemPersonnel_ResearchItem">
-          <End Role="ResearchItem" Type="Self.ResearchItem" Multiplicity="0..1" />
+          <End Role="ResearchItem" Type="Self.ResearchItem" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ItemPersonnel" Type="Self.ItemPersonnel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ResearchItem">
@@ -180,6 +210,14 @@
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResearchItem" EntityType="Self.ResearchItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResearchPaper" EntityType="Self.ResearchPaper" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Achievements_Person" Association="Self.FK_Achievements_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Achievements" EntitySet="Achievements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExpRecord_Person" Association="Self.FK_ExpRecord_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="ExpRecord" EntitySet="ExpRecord" />
+          </AssociationSet>
           <AssociationSet Name="FK_Exprecord_ResearchItem" Association="Self.FK_Exprecord_ResearchItem">
             <End Role="ResearchItem" EntitySet="ResearchItem" />
             <End Role="ExpRecord" EntitySet="ExpRecord" />
@@ -223,12 +261,14 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ItemId" Type="Int32" />
-          <Property Name="ExpContent" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="ExpPerson" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="ExpTime" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="UpFile" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ExpContent" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ExpTime" Type="DateTime" />
+          <Property Name="UpFile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="State" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ResearchItem" Relationship="Self.FK_Exprecord_ResearchItem" FromRole="ExpRecord" ToRole="ResearchItem" />
+          <Property Name="PersonId" Type="Int32" />
+          <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Person" Relationship="AgriculturalResearchModel.FK_ExpRecord_Person" FromRole="ExpRecord" ToRole="Person" />
         </EntityType>
         <EntityType Name="ItemPersonnel">
           <Key>
@@ -259,6 +299,9 @@
           <NavigationProperty Name="ResearchItem" Relationship="Self.FK_ResearchItem_ResearchlPerson" FromRole="Person" ToRole="ResearchItem" />
           <NavigationProperty Name="ResearchPaper" Relationship="Self.FK_ResearchPaper_Person" FromRole="Person" ToRole="ResearchPaper" />
           <Property Name="RegTime" Type="DateTime" Precision="3" />
+          <Property Name="State" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Achievements" Relationship="AgriculturalResearchModel.FK_Achievements_Person" FromRole="Person" ToRole="Achievements" />
+          <NavigationProperty Name="ExpRecord" Relationship="AgriculturalResearchModel.FK_ExpRecord_Person" FromRole="Person" ToRole="ExpRecord" />
         </EntityType>
         <EntityType Name="ResearchItem">
           <Key>
@@ -315,6 +358,7 @@
           <Property Name="Honor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OperTime" Type="DateTime" Precision="3" />
           <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Person" Relationship="AgriculturalResearchModel.FK_Achievements_Person" FromRole="Achievements" ToRole="Person" />
         </EntityType>
         <Association Name="FK_Exprecord_ResearchItem">
           <End Role="ResearchItem" Type="Self.ResearchItem" Multiplicity="0..1">
@@ -410,7 +454,41 @@
             <End Role="Person" EntitySet="Person" />
             <End Role="ResearchPaper" EntitySet="ResearchPaper" />
           </AssociationSet>
+          <AssociationSet Name="FK_Achievements_Person" Association="AgriculturalResearchModel.FK_Achievements_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Achievements" EntitySet="Achievements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExpRecord_Person" Association="AgriculturalResearchModel.FK_ExpRecord_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="ExpRecord" EntitySet="ExpRecord" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Achievements_Person">
+          <End Type="AgriculturalResearchModel.Person" Role="Person" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="AgriculturalResearchModel.Achievements" Role="Achievements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Achievements">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExpRecord_Person">
+          <End Type="AgriculturalResearchModel.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="AgriculturalResearchModel.ExpRecord" Role="ExpRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpRecord">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -433,10 +511,11 @@
           <EntitySetMapping Name="ExpRecord">
             <EntityTypeMapping TypeName="AgriculturalResearchModel.ExpRecord">
               <MappingFragment StoreEntitySet="ExpRecord">
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
                 <ScalarProperty Name="ExpContent" ColumnName="ExpContent" />
-                <ScalarProperty Name="ExpPerson" ColumnName="ExpPerson" />
                 <ScalarProperty Name="ExpTime" ColumnName="ExpTime" />
                 <ScalarProperty Name="UpFile" ColumnName="UpFile" />
                 <ScalarProperty Name="State" ColumnName="State" />
@@ -456,6 +535,7 @@
           <EntitySetMapping Name="Person">
             <EntityTypeMapping TypeName="AgriculturalResearchModel.Person">
               <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="RegTime" ColumnName="RegTime" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Account" ColumnName="Account" />
