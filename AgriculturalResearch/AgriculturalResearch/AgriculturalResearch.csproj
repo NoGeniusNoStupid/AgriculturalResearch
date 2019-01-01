@@ -62,6 +62,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AchievementsPage\Add.aspx" />
+    <Content Include="AchievementsPage\Manage.aspx" />
     <Content Include="Administrators\Add.aspx" />
     <Content Include="Administrators\Manage.aspx" />
     <Content Include="css\all.css" />
@@ -1147,7 +1149,10 @@
     <Content Include="PersonPage\Detail.aspx" />
     <Content Include="PersonPage\PersonAdd.aspx" />
     <Content Include="PersonPage\PersonManage.aspx" />
-    <Content Include="PersonPage\UpdatePwd.aspx" />
+    <Content Include="ResearchItemPage\PersonManage.aspx" />
+    <Content Include="ResearchPaperPage\Add.aspx" />
+    <Content Include="ResearchPaperPage\Manage.aspx" />
+    <Content Include="UpdatePwd.aspx" />
     <Content Include="PowerBase.aspx" />
     <Content Include="ResearchItemPage\Add.aspx" />
     <Content Include="ResearchItemPage\AddExpRecord.aspx" />
@@ -1332,6 +1337,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AchievementsPage\Add.aspx.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AchievementsPage\Add.aspx.designer.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AchievementsPage\Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AchievementsPage\Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Administrators\Add.aspx.cs">
       <DependentUpon>Add.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1423,11 +1442,32 @@
     <Compile Include="PersonPage\PersonManage.aspx.designer.cs">
       <DependentUpon>PersonManage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PersonPage\UpdatePwd.aspx.cs">
+    <Compile Include="ResearchItemPage\PersonManage.aspx.cs">
+      <DependentUpon>PersonManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResearchItemPage\PersonManage.aspx.designer.cs">
+      <DependentUpon>PersonManage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResearchPaperPage\Add.aspx.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResearchPaperPage\Add.aspx.designer.cs">
+      <DependentUpon>Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResearchPaperPage\Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResearchPaperPage\Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdatePwd.aspx.cs">
       <DependentUpon>UpdatePwd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PersonPage\UpdatePwd.aspx.designer.cs">
+    <Compile Include="UpdatePwd.aspx.designer.cs">
       <DependentUpon>UpdatePwd.aspx</DependentUpon>
     </Compile>
     <Compile Include="PowerBase.aspx.cs">

@@ -3,52 +3,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<link rel="stylesheet" href="/css/base.css" />
-<link rel="stylesheet" href="/css/home.css" />
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/home.css" />
     <!--<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">-->
     <link href="/css/bootstrap-table.css" rel="stylesheet" type="text/css">
-<title>移动办公自动化系统</title>
+    <title>移动办公自动化系统</title>
 </head>
 
 <body>
 
-<div class="article half notice">
-	<div class="wrap-l">
-        <div class="title ue-clear">
-            <h2>通知公告</h2>
-            <a href="notice.html" class="more" target="right">更多</a>
-        </div>
-        <div class="content">
-        	<ul class="notice-list">
-            	<li class="ue-clear">
-                	<a href="javascript:;" class="notice-title">中国移动关于设立作风建设监督举报电话的公告</a>
-                    <div class="notice-time">12-15</div>
-                </li>
-                <li class="ue-clear">
-                	<a href="javascript:;" class="notice-title">关于公示全市中国移动办公生产双主体责任名单的通知</a>
-                    <div class="notice-time">12-15</div>
-                </li>
-                <li class="ue-clear">
-                	<a href="javascript:;" class="notice-title">南京市中国移动支付系统安全管理责任人名单</a>
-                    <div class="notice-time">12-15</div>
-                </li>
-                <li class="ue-clear">
-                	<a href="javascript:;" class="notice-title">2014年全市通信行业安全生产工作要点</a>
-                    <div class="notice-time">12-15</div>
-                </li>
-                <li class="ue-clear">
-                	<a href="javascript:;" class="notice-title">中国移动南京公司关于表彰各位员工的规定</a>
-                    <div class="notice-time">12-15</div>
-                </li>
-            </ul>
+    <div class="article half notice">
+        <div class="wrap-l">
+            <div class="title ue-clear">
+                <h2>系统资料统计</h2>
+                <a href="notice.html" class="more" target="right">更多</a>
+            </div>
+            <div class="content" style="height:300px">
+                <h2>管理员：<%=AdminCount %>名</h2>
+                <br />
+                <h2>科研人员：<%=PersonCount %>名</h2>
+                <br />
+                <h2>申请项目：<%=AppItemCount %>  个</h2>
+                <br />
+                <h2>发表论文：<%=PaperCount %>  个</h2>
+                <br />
+                <h2>获得成果：<%=AchievementsCount %>  个</h2>
+            </div>
         </div>
     </div>
-</div>
 
 
-<div style="clear: both"></div>
-    <div class="article half duty">
+    <div style="clear: both"></div>
+    <%--<div class="article half duty">
 	<div class="wrap-l">
         <div class="title ue-clear">
             <h2>我的任务</h2>
@@ -106,7 +93,7 @@
             <!--</table>-->
         </div>
     </div>
-</div>
+</div>--%>
 </body>
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script src="/js/bootstrap.min.js"></script>

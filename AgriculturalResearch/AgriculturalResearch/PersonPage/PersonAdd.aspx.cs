@@ -14,7 +14,11 @@ namespace AgriculturalResearch.PersonPage
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {    
+            {
+                if (Request.QueryString["read"] != null)
+                {
+                    Panel1.Visible = false;
+                }
                 if (Request.QueryString["type"] != null)
                 {
                     //编号

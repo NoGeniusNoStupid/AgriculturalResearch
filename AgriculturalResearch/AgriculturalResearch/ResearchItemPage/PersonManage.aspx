@@ -1,4 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Manage.aspx.cs" Inherits="AgriculturalResearch.ExpRecordPage.Manage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PersonManage.aspx.cs" Inherits="AgriculturalResearch.ResearchItemPage.PersonManage" %>
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -47,31 +49,31 @@
             color: #fff;
         }
     </style>
-    <title>实验记录管理</title>
+    <title>科研项目管理</title>
 </head>
 
 <body onload="Recodeload()">
     <div class="title">
-        <h2>实验记录管理</h2>
+        <h2>科研项目管理</h2>
     </div>
     <form runat="server">
-
-        <div class="table-operate ue-clear">
-            <% if (Session["AdminId"] != null)
-               { %>
-            <%}
-               else
-               { %>
-              <a href="/AchievementsPage/Add.aspx?" style="float: right" class="add">添加</a>
-            <%} %>
-          
-            <a href="#" onclick="self.location=document.referrer;" style="float: right" class="del">返回</a>
+        <div class="query">
+            <div class="tabe_bot">
+                <div class="l_left">
+                    <label>项目名称：</label>
+                    <asp:TextBox ID="search" placeholder="请输入项目名称" runat="server"></asp:TextBox>
+                </div>
+                <asp:Button CssClass="tabe_btn" ID="Button2" runat="server" Text="查询" OnClick="Button1_Click" />
+            </div>
         </div>
+        <div class="table-operate ue-clear">
+        <a href="/ResearchItemPage/Add.aspx" style="float:right" class="add" >添加</a>
+    </div>
         <div>
             <asp:GridView CssClass="table table-hover" ID="GvData" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                 CellPadding="4" DataKeyNames="id" ForeColor="#333333" GridLines="None" OnPageIndexChanging="GvData_PageIndexChanging"
-                OnRowDeleting="GvData_RowDeleting" PageSize="5"
-                Width="100%">
+                PageSize="5"
+                Width="100%"  >
                 <PagerSettings FirstPageText="首页" LastPageText="尾页" NextPageText="下一页" PageButtonCount="12"
                     PreviousPageText="上一页" />
                 <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" />
@@ -88,33 +90,47 @@
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="实验内容">
+                    <asp:TemplateField HeaderText="项目单位">
                         <ItemTemplate>
-                            <asp:Label ID="ExpContent" runat="server" Text='<%# Bind("ExpContent") %>'></asp:Label>
+                            <asp:Label ID="ItemCompany" runat="server" Text='<%# Bind("ResearchItem.ItemCompany") %>'></asp:Label>
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="详细材料">
+                    <asp:TemplateField HeaderText="负责人">
                         <ItemTemplate>
-                            <asp:HyperLink ID="FileName" runat="server" NavigateUrl='<%# Bind("UpFile") %>' Text='<%# Bind("FileName") %>'></asp:HyperLink>
+                            <asp:Label ID="MajorPerson" runat="server" Text='<%# Bind("ResearchItem.MajorPerson") %>'></asp:Label>
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="实验人">
+                    <asp:TemplateField HeaderText="联系方式">
                         <ItemTemplate>
-                            <asp:HyperLink ID="Name" runat="server" NavigateUrl='<%# Bind("Person.Name") %>' Text='<%# Bind("Person.Name") %>'></asp:HyperLink>
+                            <asp:Label ID="Tel" runat="server" Text='<%# Bind("ResearchItem.Tel") %>'></asp:Label>
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="提交时间">
+                    <asp:TemplateField HeaderText="项目经费">
                         <ItemTemplate>
-                            <asp:Label ID="ExpTime" runat="server" Text='<%# Bind("ExpTime") %>'></asp:Label>
+                            <asp:Label ID="Funds" runat="server" Text='<%# Bind("ResearchItem.Funds") %>'></asp:Label>
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
+                    <asp:TemplateField HeaderText="项目年限">
+                        <ItemTemplate>
+                            <asp:Label ID="ExeYear" runat="server" Text='<%# Bind("ResearchItem.ExeYear") %>'></asp:Label>
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" />
+                    </asp:TemplateField>   
+                     <asp:TemplateField HeaderText="参与时间">
+                        <ItemTemplate>
+                            <asp:Label ID="OperTime" runat="server" Text='<%# Bind("OperTime") %>'></asp:Label>
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" />
+                    </asp:TemplateField>   
                     <asp:TemplateField HeaderText="操作" ShowHeader="False">
                         <ItemTemplate>
-                            <asp:LinkButton ID="LinkButton5" OnClientClick="return confirm('确定要删除该实验记录吗？')" runat="server" CausesValidation="False" CommandArgument='<%#Eval ("Id") %>' CommandName="Delete" Text="删除"></asp:LinkButton>
+                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#"/ResearchItemPage/Detail.aspx?power=1&id="+Eval("ResearchItem.Id") %>' Text="详情"></asp:HyperLink>
+                            <span>|</span>
+                            <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%#"/ExpRecordPage/Manage.aspx?power=1&id="+Eval("ResearchItem.Id") %>' Text="实验记录"></asp:HyperLink>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -142,5 +158,6 @@
             </asp:GridView>
         </div>
     </form>
+
 </body>
 </html>

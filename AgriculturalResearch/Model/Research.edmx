@@ -20,6 +20,7 @@
           <Property Name="AchTel" Type="varchar" MaxLength="50" />
           <Property Name="Honor" Type="varchar" MaxLength="50" />
           <Property Name="OperTime" Type="datetime" />
+          <Property Name="State" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Admin">
           <Key>
@@ -262,7 +263,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ItemId" Type="Int32" />
           <Property Name="ExpContent" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="ExpTime" Type="DateTime" />
+          <Property Name="ExpTime" Type="DateTime" Precision="3" />
           <Property Name="UpFile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="State" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ResearchItem" Relationship="Self.FK_Exprecord_ResearchItem" FromRole="ExpRecord" ToRole="ResearchItem" />
@@ -359,6 +360,7 @@
           <Property Name="OperTime" Type="DateTime" Precision="3" />
           <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Person" Relationship="AgriculturalResearchModel.FK_Achievements_Person" FromRole="Achievements" ToRole="Person" />
+          <Property Name="State" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Exprecord_ResearchItem">
           <End Role="ResearchItem" Type="Self.ResearchItem" Multiplicity="0..1">
@@ -591,6 +593,7 @@
           <EntitySetMapping Name="Achievements">
             <EntityTypeMapping TypeName="AgriculturalResearchModel.Achievements">
               <MappingFragment StoreEntitySet="Achievements">
+                <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PersonId" ColumnName="PersonId" />

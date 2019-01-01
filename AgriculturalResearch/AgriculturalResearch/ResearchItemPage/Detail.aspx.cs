@@ -17,6 +17,15 @@ namespace AgriculturalResearch.ResearchItemPage
             //查看详情
             if (!IsPostBack)
             {
+                if(Request.QueryString["power"]!=null)
+                {
+                    Panel1.Visible = false;
+                }
+                else
+                {
+                    Panel1.Visible = true;
+                }
+              
                 int id = Convert.ToInt32(Request.QueryString["id"].ToString());
                 int personId = Convert.ToInt32(Session["PersonId"]);
                 var Item = DB.ResearchItem.FirstOrDefault(a => a.Id == id);//获取对象

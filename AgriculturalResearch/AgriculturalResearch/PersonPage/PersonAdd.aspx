@@ -50,7 +50,7 @@
                                     </asp:DropDownList>
                                 </td>
                             </tr>
-                             <tr>
+                            <tr>
                                 <td style="border-top: none">年龄：<i class="i_start"></i></td>
                                 <td style="text-align: left; border-top: none">
                                     <asp:TextBox ID="Age" runat="server"></asp:TextBox>
@@ -99,10 +99,12 @@
                     </table>
                 </div>
             </div>
-            <div class="bot_btn">  
-                <asp:Button CssClass="btn btn-success" ID="Button1" runat="server" Text="保存" OnClick="Button1_Click" />
-                <button class="btn btn1"><a href="PersonManage.aspx" target="right">返回</a></button>
-            </div>
+            <asp:Panel ID="Panel1" runat="server">
+                <div class="bot_btn">
+                    <asp:Button CssClass="btn btn-success" ID="Button1" runat="server" Text="保存" OnClick="Button1_Click" />
+                    <button class="btn btn1"><a href="PersonManage.aspx" target="right">返回</a></button>
+                </div>
+            </asp:Panel>
         </div>
     </form>
 </body>

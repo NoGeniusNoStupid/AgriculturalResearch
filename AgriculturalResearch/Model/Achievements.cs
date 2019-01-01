@@ -25,6 +25,7 @@ namespace Model
         public string Honor { get; set; }
         public Nullable<System.DateTime> OperTime { get; set; }
         public string FileName { get; set; }
+        public string State { get; set; }
     
         public virtual Person Person { get; set; }
     }

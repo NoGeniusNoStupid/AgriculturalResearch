@@ -83,7 +83,7 @@
             <label>审批时间：<%=PageModel.ApprovalTime %></label><br />
             <br />
             <% 
-                string link = @"<a href=/PersonPage/Detail.aspx?id='{0}'>{1}</a>";
+                string link = @"<a href=/PersonPage/PersonAdd.aspx?type=1&read=0&id={0}>{1}</a>";
                 string itemPersonnel = string.Empty;
                 foreach (var item in PageModel.ItemPersonnel)
                 {
@@ -95,8 +95,8 @@
             <br />
         </div>
     </div>
-
-    <form id="form_demo" runat="server">
+    <asp:Panel ID="Panel1" runat="server">
+         <form id="form_demo" runat="server">
         <div class="top">
             <div>
                 <div class="top_out">
@@ -116,18 +116,14 @@
             <div class="bot_btn">
                 <asp:Button CssClass="btn btn-success" ID="Button1" runat="server" Text="添加" OnClick="Button1_Click" />
                 <asp:Button CssClass="btn btn-danger" ID="Button2" runat="server" Text="删除" OnClick="Button2_Click" />
-                <button class="btn btn1"><a href="/ResearchItemPage/Manage.aspx" target="right">返回</a></button>
+                <button class="btn btn1"><a  href="#" onclick="self.location=document.referrer;" target="right">返回</a></button>
             </div>
         </div>
     </form>
+    </asp:Panel>
    
-    <%-- <div class="title">
-        <h4>科研项目详细内容</h4>
-    </div>--%>
-    
-      <div class="table-operate ue-clear" >
-        <a href="#" class=""  style="width:100px"  >查看实验记录</a>
-     </div>
+   
+ 
     
 </body>
 </html>

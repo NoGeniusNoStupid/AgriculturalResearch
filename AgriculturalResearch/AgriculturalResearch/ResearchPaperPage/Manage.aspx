@@ -1,4 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Manage.aspx.cs" Inherits="AgriculturalResearch.ExpRecordPage.Manage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Manage.aspx.cs" Inherits="AgriculturalResearch.ResearchPaperPage.Manage" %>
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -47,74 +49,94 @@
             color: #fff;
         }
     </style>
-    <title>实验记录管理</title>
+    <title>科研成果管理</title>
 </head>
 
 <body onload="Recodeload()">
     <div class="title">
-        <h2>实验记录管理</h2>
+        <h2>科研成果管理</h2>
     </div>
     <form runat="server">
-
-        <div class="table-operate ue-clear">
-            <% if (Session["AdminId"] != null)
-               { %>
-            <%}
-               else
-               { %>
-              <a href="/AchievementsPage/Add.aspx?" style="float: right" class="add">添加</a>
-            <%} %>
-          
-            <a href="#" onclick="self.location=document.referrer;" style="float: right" class="del">返回</a>
+        <div class="query">
+            <div class="tabe_bot">
+                <div class="l_left">
+                    <label>成果标题：</label>
+                    <asp:TextBox ID="search" placeholder="请输入成果标题" runat="server"></asp:TextBox>
+                </div>
+                <asp:Button CssClass="tabe_btn" ID="Button2" runat="server" Text="查询" OnClick="Button1_Click" />
+            </div>
         </div>
+        <div class="table-operate ue-clear">
+        <a href="/ResearchPaperPage/Add.aspx" style="float:right" class="add" >添加</a>
+    </div>
         <div>
             <asp:GridView CssClass="table table-hover" ID="GvData" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                 CellPadding="4" DataKeyNames="id" ForeColor="#333333" GridLines="None" OnPageIndexChanging="GvData_PageIndexChanging"
                 OnRowDeleting="GvData_RowDeleting" PageSize="5"
-                Width="100%">
+                Width="100%" OnRowCommand="GvData_RowCommand"  >
                 <PagerSettings FirstPageText="首页" LastPageText="尾页" NextPageText="下一页" PageButtonCount="12"
                     PreviousPageText="上一页" />
                 <RowStyle BackColor="#EFF3FB" HorizontalAlign="Center" />
                 <Columns>
-                    <asp:TemplateField HeaderText="项目名称">
+                    <asp:TemplateField HeaderText="论文标题">
                         <ItemTemplate>
-                            <asp:Label ID="ItemName" runat="server" Text='<%# Bind("ResearchItem.ItemName") %>'></asp:Label>
+                            <asp:Label ID="PaperTitle" runat="server" Text='<%# Bind("PaperTitle") %>'></asp:Label>
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="项目类型">
+                    <asp:TemplateField HeaderText="期刊名称">
                         <ItemTemplate>
-                            <asp:Label ID="ItemType" runat="server" Text='<%# Bind("ResearchItem.ItemType") %>'></asp:Label>
+                            <asp:Label ID="KName" runat="server" Text='<%# Bind("KName") %>'></asp:Label>
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="实验内容">
+                    <asp:TemplateField HeaderText="期刊类型">
                         <ItemTemplate>
-                            <asp:Label ID="ExpContent" runat="server" Text='<%# Bind("ExpContent") %>'></asp:Label>
+                            <asp:Label ID="KType" runat="server" Text='<%# Bind("KType") %>'></asp:Label>
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="详细材料">
-                        <ItemTemplate>
+                    <asp:TemplateField HeaderText="相关材料">
+                       <ItemTemplate>
                             <asp:HyperLink ID="FileName" runat="server" NavigateUrl='<%# Bind("UpFile") %>' Text='<%# Bind("FileName") %>'></asp:HyperLink>
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="实验人">
+                    <asp:TemplateField HeaderText="检索单位">
                         <ItemTemplate>
-                            <asp:HyperLink ID="Name" runat="server" NavigateUrl='<%# Bind("Person.Name") %>' Text='<%# Bind("Person.Name") %>'></asp:HyperLink>
+                            <asp:Label ID="DanWei" runat="server" Text='<%# Bind("DanWei") %>'></asp:Label>
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="提交时间">
+                   
+                  
+                    <asp:TemplateField HeaderText="审批状态">
                         <ItemTemplate>
-                            <asp:Label ID="ExpTime" runat="server" Text='<%# Bind("ExpTime") %>'></asp:Label>
+                            <asp:Label ID="State" runat="server" Text='<%# Bind("State") %>'></asp:Label>
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" />
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="操作时间">
+                        <ItemTemplate>
+                            <asp:Label ID="OperTime" runat="server" Text='<%# Bind("OperTime") %>'></asp:Label>
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" />
+                    </asp:TemplateField>
+
+                    <asp:TemplateField HeaderText="审核" ShowHeader="False">
+                        <ItemTemplate>
+                              <asp:LinkButton ID="AgreeButton"  runat="server" CausesValidation="False" CommandName="Agree" CommandArgument='<%#Eval ("Id") %>' Text="同意"></asp:LinkButton>
+                             <span>|</span>
+                              <asp:LinkButton ID="RefuseButton"  runat="server" CausesValidation="False" CommandName="Refuse"  CommandArgument='<%#Eval ("Id") %>' Text="拒绝"></asp:LinkButton>
+                        </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="操作" ShowHeader="False">
                         <ItemTemplate>
-                            <asp:LinkButton ID="LinkButton5" OnClientClick="return confirm('确定要删除该实验记录吗？')" runat="server" CausesValidation="False" CommandArgument='<%#Eval ("Id") %>' CommandName="Delete" Text="删除"></asp:LinkButton>
+                           
+                            <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl='<%#"/ResearchPaperPage/Add.aspx?type=1&id="+Eval("id") %>' Text="编辑"></asp:HyperLink>
+                            <span>|</span>
+                            <asp:LinkButton ID="LinkButton5" OnClientClick="return confirm('确定要删除该科研成果吗？')"  runat="server" CausesValidation="False" CommandArgument='<%#Eval ("Id") %>' CommandName="Delete" Text="删除"></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
@@ -142,5 +164,6 @@
             </asp:GridView>
         </div>
     </form>
+
 </body>
 </html>

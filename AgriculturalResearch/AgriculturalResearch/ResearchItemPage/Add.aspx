@@ -98,7 +98,7 @@
                                 <tr>
                                     <td style="border-top: none">当前材料：<i class="i_start"></i></td>
                                     <td style="text-align: left; border-top: none">
-                                        <a href="/UpFile/<%=PageModel.UpFile %>">
+                                        <a href="<%=PageModel.UpFile %>">
                                             <asp:Label ID="Label1" runat="server"></asp:Label>
                                         </a>
                                     </td>

@@ -25,11 +25,14 @@ namespace AgriculturalResearch.ExpRecordPage
         {
             int ID = Convert.ToInt32(GvData.DataKeys[e.RowIndex].Values[0].ToString());
             var Item = DB.ExpRecord.FirstOrDefault(a => a.Id == ID);
-            int personId = Convert.ToInt32(Session["PersonId"]);
-            if (Item.PersonId != personId) 
+            if (Session["PersonId"] != null)
             {
-                Message("只能删除自己的实验记录！");
-                return;
+                int personId = Convert.ToInt32(Session["PersonId"]);
+                if (Item.PersonId != personId)
+                {
+                    Message("只能删除自己的实验记录！",true);
+                    return;
+                }
             }
             DB.Entry(Item).State = EntityState.Deleted;
             DB.SaveChanges();

@@ -29,10 +29,8 @@ namespace AgriculturalResearch.ResearchItemPage
                 LinkButton PostButton = row.Cells[9].FindControl("PostButton") as LinkButton;
                 LinkButton RevokeButton = row.Cells[9].FindControl("RevokeButton") as LinkButton;
 
-                HyperLink HyperLink3 = row.Cells[10].FindControl("HyperLink3") as HyperLink;//编辑功能
-                
+                HyperLink HyperLink3 = row.Cells[10].FindControl("HyperLink3") as HyperLink;//编辑功能              
                 //获取State的值
-             
                 Label stateLable = row.Cells[7].FindControl("State") as Label;
                 string state = stateLable.Text ;
                 if (Session["AdminId"] != null)

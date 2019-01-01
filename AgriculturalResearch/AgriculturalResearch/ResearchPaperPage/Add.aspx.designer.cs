@@ -7,10 +7,10 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace AgriculturalResearch.PersonPage {
+namespace AgriculturalResearch.ResearchPaperPage {
     
     
-    public partial class PersonAdd {
+    public partial class Add {
         
         /// <summary>
         /// form_demo 控件。
@@ -22,13 +22,13 @@ namespace AgriculturalResearch.PersonPage {
         protected global::System.Web.UI.HtmlControls.HtmlForm form_demo;
         
         /// <summary>
-        /// Account 控件。
+        /// PaperTitle 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Account;
+        protected global::System.Web.UI.WebControls.TextBox PaperTitle;
         
         /// <summary>
         /// RequiredFieldValidator1 控件。
@@ -40,40 +40,13 @@ namespace AgriculturalResearch.PersonPage {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// Name 控件。
+        /// KName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Name;
-        
-        /// <summary>
-        /// RequiredFieldValidator2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-        
-        /// <summary>
-        /// Sex 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Sex;
-        
-        /// <summary>
-        /// Age 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Age;
+        protected global::System.Web.UI.WebControls.TextBox KName;
         
         /// <summary>
         /// RequiredFieldValidator7 控件。
@@ -85,76 +58,76 @@ namespace AgriculturalResearch.PersonPage {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
         
         /// <summary>
-        /// Tel 控件。
+        /// KType 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Tel;
+        protected global::System.Web.UI.WebControls.DropDownList KType;
         
         /// <summary>
-        /// RequiredFieldValidator3 控件。
+        /// DanWei 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.TextBox DanWei;
         
         /// <summary>
-        /// Title 控件。
+        /// RequiredFieldValidator2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Title;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
-        /// RequiredFieldValidator4 控件。
+        /// Panel2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// major 控件。
+        /// Label1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox major;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// RequiredFieldValidator5 控件。
+        /// FileUpload2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload2;
         
         /// <summary>
-        /// College 控件。
+        /// Panel3 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox College;
+        protected global::System.Web.UI.WebControls.Panel Panel3;
         
         /// <summary>
-        /// RequiredFieldValidator6 控件。
+        /// FileUpload1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
         
         /// <summary>
         /// Panel1 控件。
